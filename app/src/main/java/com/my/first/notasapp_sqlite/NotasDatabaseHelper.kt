@@ -1,12 +1,13 @@
 package com.my.first.notasapp_sqlite
 
+import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class NotasDatabaseHelper (context: Context) : SQLiteOpenHelper(
     context, DATABASE_NAME, null, DATABASE_VERSION
-){
+) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTableQuery =
             "CREATE TABLE $TABLE_NAME " +
@@ -20,6 +21,23 @@ class NotasDatabaseHelper (context: Context) : SQLiteOpenHelper(
         db?.execSQL(dropTableQuery)
         onCreate(db)
     }
+
+
+    fun insertarNota(nota: Nota){
+        val db = writableDatabase
+
+        val values = ContentValues().apply {
+            put(COLUM_TITLE, nota.titulo)
+            put(COLUM_DESCRIPTION, nota.descripcion)
+        }
+
+        db.insert(TABLE_NAME, null, values)
+        db.close()
+    }
+
+
+
+
 
     companion object{
         private const val DATABASE_NAME = "notas.db"
