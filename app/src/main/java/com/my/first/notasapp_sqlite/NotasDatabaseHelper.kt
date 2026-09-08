@@ -56,7 +56,7 @@ class NotasDatabaseHelper (context: Context) : SQLiteOpenHelper(
 
     companion object{
         private const val DATABASE_NAME = "notas.db"
-        private const val DATABASE_VERSION = 1
+        private const val DATABASE_VERSION = 2
         private const val TABLE_NAME = "notas"
         private const val COLUM_ID = "id"
         private const val COLUM_TITLE = "titulo"
