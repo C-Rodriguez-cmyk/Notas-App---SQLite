@@ -83,6 +83,14 @@ class NotasDatabaseHelper (context: Context) : SQLiteOpenHelper(
         db.close()
     }
 
+    fun deleteNota (idNota : Int){
+        val db = writableDatabase
+        val whereClause = "$COLUM_ID = ?"
+        val whereArgs = arrayOf(idNota.toString())
+        db.delete(TABLE_NAME, whereClause , whereArgs)
+        db.close()
+    }
+
     companion object{
         private const val DATABASE_NAME = "notas.db"
         private const val DATABASE_VERSION = 2
